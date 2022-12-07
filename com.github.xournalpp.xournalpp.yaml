@@ -165,15 +165,87 @@ modules:
       - mkdir /app/extensions
 
   # Smaller latex package
-  - name: tinetex
+  - name: tinytex
     only-arches:
       - x86_64
     buildsystem: simple
     build-commands:
       - mkdir /app/tinytex
       - tar xf TinyTeX-1-v2022.04.04.tar.xz -C /app/tinytex/ --strip-components 1
+
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ varwidth.zip
+      - /app/tinytex/bin/*/mktexlsr
+
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ scontents.zip
+      - cd /app/tinytex/texmf-dist/tex/latex/scontents/
+      - /app/tinytex/bin/*/latex -output-directory=/app/tinytex/texmf-dist/tex/latex/scontents scontents.ins
+      - /app/tinytex/bin/*/mktexlsr
+  
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ filemod.zip
+      - /app/tinytex/bin/*/mktexlsr
+  
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ gincltex.zip
+      - cd /app/tinytex/texmf-dist/tex/latex/gincltex/
+      - /app/tinytex/bin/*/latex -output-directory=/app/tinytex/texmf-dist/tex/latex/gincltex gincltex.ins
+      - /app/tinytex/bin/*/mktexlsr
+  
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ ydoc.zip
+      - cd /app/tinytex/texmf-dist/tex/latex/ydoc/
+      - /app/tinytex/bin/*/tex -output-directory=/app/tinytex/texmf-dist/tex/latex/ydoc ydoc.dtx
+      - /app/tinytex/bin/*/mktexlsr
+  
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ collectbox.zip
+      - cd /app/tinytex/texmf-dist/tex/latex/collectbox/
+      - /app/tinytex/bin/*/latex -output-directory=/app/tinytex/texmf-dist/tex/latex/collectbox collectbox.ins
+      - /app/tinytex/bin/*/mktexlsr
+  
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ adjustbox.zip
+      - cd /app/tinytex/texmf-dist/tex/latex/adjustbox/
+      - /app/tinytex/bin/*/latex -output-directory=/app/tinytex/texmf-dist/tex/latex/adjustbox adjustbox.ins
+      - /app/tinytex/bin/*/mktexlsr
+  
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ currfile.zip
+      - cd /app/tinytex/texmf-dist/tex/latex/currfile/
+      - /app/tinytex/bin/*/latex -output-directory=/app/tinytex/texmf-dist/tex/latex/currfile currfile.ins
+      - /app/tinytex/bin/*/mktexlsr
+  
+      - unzip -d /app/tinytex/texmf-dist/tex/latex/ standalone.zip
+      - cd /app/tinytex/texmf-dist/tex/latex/standalone/
+      - /app/tinytex/bin/*/latex -output-directory=/app/tinytex/texmf-dist/tex/latex/standalone standalone.ins
+      - /app/tinytex/bin/*/mktexlsr
+
     sources:
       - type: file
         url: https://www.giuspen.net/software/TinyTeX-1-v2022.04.04.tar.xz
         sha256: 3025930f9c9e989c0cac59826f8ee126d677aec728d20537b9e53e13ace29020
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/scontents.zip
+        sha256: 91cbc287dd0027f656bc3f4d0bef8582e116af1d814ef09219f359fb845befee
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/standalone.zip
+        sha256: 00390fc76b8d03a769457abc912eec38e25d51ba2b164ccf04bc6e0f66df8fce
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/ydoc.zip
+        sha256: fa89ce00adfaecb13d506fbb7788fd7121cf3383371a34e54a8cbc84719c6ba7
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/listings.zip
+        sha256: af1cca80401ac79eef5e2f14a5bfc18ba3ce0925b133fdaef86a06044ec602cf
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/currfile.zip
+        sha256: e8e8224d46cd039ba88f6519fa6ceb918055f1d0dbc8a04187081653f4a36b3c
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/adjustbox.zip
+        sha256: e6339ee136c90ef871275f00feb9ff85bc49488bb4e0fe4495d5b788348f256d
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/collectbox.zip
+        sha256: d1e18813ee37b5bf80fda4822c30459001676bdb3a018bdd5a7ac8f2f19a63bb
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/gincltex.zip
+        sha256: 5b00f16d173795023b17a6d3f3212a4253505ee00763b664505542e41d4b7e28
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/filemod.zip
+        sha256: 3d484cc85c66d9b273f709682ec51aae1ad57a5f037600c95d185df8accb40f2
+      - type: file
+        url: https://mirrors.ctan.org/macros/latex/contrib/varwidth.zip
+        sha256: fd8b0953326902e35c2815dfa042872ec3f2b7c94c890e8add00e41d7feae0aa
 
