@@ -27,7 +27,7 @@ finish-args:
   - --filesystem=xdg-run/pipewire-0
   # Allow dconf
   - --filesystem=xdg-run/dconf
-  - --filesystem=~/.config/dconf:ro
+  - --filesystem=xdg-config/dconf:ro
   - --talk-name=ca.desrt.dconf
   - --env=DCONF_USER_CONFIG_DIR=.config/dconf
   - --persist=.xournalpp
